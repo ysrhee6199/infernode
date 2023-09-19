@@ -5,7 +5,7 @@
 int main(int argc, char** argv)
 {
      
-    std::string model_name_ = "/home/nvidia/engine/yolov7.engine";
+    std::string model_name_ = "/home/avees/engine/yolov7.engine";
 
     IRuntime* runtime_ = nullptr;
     ICudaEngine* engine_2 = nullptr;
