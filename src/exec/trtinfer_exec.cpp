@@ -11,15 +11,11 @@ int main(int argc, char** argv)
     ICudaEngine* engine_2 = nullptr;
     IExecutionContext* context_ = nullptr;
 
-    std::cerr << "hst\n";
     deserialize_engine(model_name_, &runtime_, &engine_2, &context_);
-    std::cerr << "hst2\n";
     rclcpp::init(argc, argv);
-    rclcpp::executors::MultiThreadedExecutor executor;
+    rclcpp::executors::SingleThreadedExecutor executor;
     auto node = std::make_shared<Yolov7>(engine_2);
-     auto node1 = std::make_shared<Yolov7_2>(engine_2);
-    executor.add_node(node);
-    executor.add_node(node1);
+    executor.add_node(node)
     executor.spin();
     rclcpp::shutdown();
 
