@@ -55,26 +55,3 @@ private:
   std::vector<std::vector<Detection>> result_batch;
 };
 
-
-class Yolov7_2 : public rclcpp::Node
-{
-public:
-  Yolov7_2(ICudaEngine* engine_);
-  ~Yolov7_2();
-
-private:
-  void image_callback(const sensor_msgs::msg::Image::SharedPtr image);
-  void initialize_model();
- 
-
-  rclcpp::Subscription<sensor_msgs::msg::Image>::SharedPtr raw_image_subscriber_;
-
-  IExecutionContext* context_ = nullptr;
-  ICudaEngine* engine_;
-  cudaStream_t stream_;
-
-  float* device_buffers_[2];
-  float* output_buffer_host_ = nullptr;
-
-  std::vector<std::vector<Detection>> result_batch;
-};
